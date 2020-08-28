@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小米商城</title>
+<link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../font_28ghwlauy58/swiper-bundle.min.css">
+<link rel="stylesheet" href="../font_28ghwlauy58/iconfont.css">
+<script src="./js/jquery.js"></script>
+<script>
+    function headNav(){
+        $.ajax({
+            url:"./data/demo.json",
+            success:function(result){
+                var topArr = result.topNav;
+                console.log(topArr);
+                for(var i = 0; i < topArr.length; i++){
+                    var topNode = $(` <li class="nav-item"><a class="link">${topArr[i].title}</a>
+                        <div class = "item-children"> <div class = "container"></div></div>
+                        </li>`);
+                        topNode.appendTo(".nav-list");
+                        var childArr = topArr[i].childs;
+                        for(var j = 0; j < childArr.length;j++){
+                            var newTopUl = $(`<ul class="children-list">
+                            
+                            </ul>`);
+                            newTopUl.appendTo(topNode.find("div.container"));
+                            $(`<li class="first">
+                                <a><div class="figure figure-thumb">
+                                    <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&;q=90" alt="小米10至尊纪念版" width="160" height="110">
+                                    </div>
+                                    <div class="title">${childArr[j].a}</div> 
+                                    <p class="price">${childArr[j].i}</p>
+                                </a>
+                            </li>`).appendTo(newTopUl);
+                        }
+                            
+                }
+
+            },
+            error:function(msg){
+                console.log(msg);
+            }
+        })
+    }
+    headNav();
+</script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <div class="header">
+                <div id="topbarBannerWrapper">
+                    <div class="topbar-banner-Wrapper">
+                        <a class="link-block" style="background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/271a0ad51f0b0760ed9cb46791fb2b31.jpg?w=5120&h=240);"></a>
+                    </div>
+                </div>
+                <div class="site-topbar">
+                    <div class="container">
+                        <div class="topbar-nav">
+                            <a>小米商城</a> 
+                            <span class="sep">|</span> 
+                            <a>MIUI</a> 
+                            <span class="sep">|</span> 
+                            <a>IoT</a> 
+                            <span class="sep">|</span> 
+                            <a>云服务</a> 
+                            <span class="sep">|</span> 
+                            <a >金融</a> 
+                            <span class="sep">|</span> 
+                            <a>有品</a> 
+                            <span class="sep">|</span> 
+                            <a>小爱开放平台</a> 
+                            <span class="sep">|</span> 
+                            <a>企业团购</a> 
+                            <span class="sep">|</span> 
+                            <a>资质证照</a> 
+                            <span class="sep">|</span> 
+                            <a>协议规则</a> 
+                            <span class="sep">|</span> 
+                            <a class="topbar-download">
+                                下载app
+                                <span class="appcode"><img src="http://i1.mifile.cn/f/i/17/appdownload/download.png?1" alt="小米商城" width="90" height="90">
+                                    小米商城APP
+                                </span>
+                            </a> 
+                            <span class="sep">|</span> 
+                            <a>智能生活</a>
+                            <span class="sep">|</span> 
+                            <a>Select Location</a>
+                        </div>
+                        <div class="topbar-cart" id="miniCartTrigger">
+                            <em>购物车</em>
+                        </div>
+                        <div class="topbar-info">
+                            <a href="./html/login.html">登录</a>
+                            <span class="sep">|</span>
+                            <a href="./html/registration.html">注册</a>
+                            <span class="sep">|</span>
+                            <a>消息通知</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="site-header">
+                    <div class="container">
+                        <div class="header-logo">
+                            <a href="./index.html" title="小米首页" class="logo"></a>
+                        </div>
+                        <div class="header-nav">
+                            <ul class="nav-list">
+                                <li class="nav-category">
+                                    <a class="link-category">
+                                        商品目录
+                                    </a>
+                                </li>
+                                <!-- <li class="nav-item"><a class="link nav-item-active">小米手机</a></li>
+                                <li class="nav-item"><a class="link">Redmi 红米</a></li>
+                                <li class="nav-item"><a class="link">电视</a></li>
+                                <li class="nav-item"><a class="link">笔记本</a></li>
+                                <li class="nav-item"><a class="link">家电</a></li>
+                                <li class="nav-item"><a class="link">路由器</a></li>
+                                <li class="nav-item"><a class="link">智能硬件</a></li>
+                                <li class="nav-item"><a class="link">服务</a></li>
+                                <li class="nav-item"><a class="link">社区</a></li> -->
+                            </ul>
+                        </div>
+                        <div class="header-search">
+                            <form class="search-form">
+                                <input type="search" class="search-text">
+                                <button class="search-btn"><span class="iconfont icon-sousuo"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

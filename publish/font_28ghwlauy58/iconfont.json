@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "141087",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "932340",
+      "name": "箭头",
+      "font_class": "jiantou-copy",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>小米商城</title><link rel="stylesheet" href="./css/index.css"><link rel="stylesheet" href="./font_28ghwlauy58/swiper-bundle.min.css"><link rel="stylesheet" href="./font_28ghwlauy58/iconfont.css"><script src="./js/jquery.js"></script><script>function headNav(){
+            $.ajax({
+                url:"./data/demo.json",
+                success:function(result){
+                    var topArr = result.topNav;
+                    console.log(topArr);
+                    for(var i = 0; i < topArr.length; i++){
+                        var topNode = $(` <li class="nav-item"><a class="link">${topArr[i].title}</a>
+                            <div class = "item-children"> <div class = "container"></div></div>
+                            </li>`);
+                            topNode.appendTo(".nav-list");
+                            var childArr = topArr[i].childs;
+                            for(var j = 0; j < childArr.length;j++){
+                                var newTopUl = $(`<ul class="children-list">
+                                
+                                </ul>`);
+                                newTopUl.appendTo(topNode.find("div.container"));
+                                $(`<li class="first">
+                                    <a><div class="figure figure-thumb">
+                                        <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&;q=90" alt="小米10至尊纪念版" width="160" height="110">
+                                        </div>
+                                        <div class="title">${childArr[j].a}</div> 
+                                        <p class="price">${childArr[j].i}</p>
+                                    </a>
+                                </li>`).appendTo(newTopUl);
+                            }
+                                
+                    }
+
+                },
+                error:function(msg){
+                    console.log(msg);
+                }
+            })
+        }
+        function leftNav(){
+            $.ajax({
+                url:"./data/demo.json",
+                success:function(result){
+                    var sideArr = result.sideNav;
+                    console.log(sideArr);
+                    console.log(sideArr.length);
+                    for(var i = 0; i < sideArr.length; i++){
+                        var node = $(`<li class="category-item">
+                            <a class = "title">${sideArr[i].title}<span class="iconfont icon-jiantou-copy"></span></a>
+                            <div class = "children">
+                                
+                            </div>
+                        </li>`);
+                        node.appendTo("#j_categoryList");
+                        var childArr = sideArr[i].child;
+                        var col = Math.ceil(childArr.length / 6);
+                        node.find("div.children").css("width",248 * col + "px");
+                        for(var j = 0; j < childArr.length;j++){
+                            if(j % 6 == 0){
+                                var newul = $(`<ul class="children-list">
+                                   
+                                </ul>`);
+                                newul.appendTo(node.find("div.children"));
+                            }
+                            $(` <li>
+                                
+                                <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5ca871528d3420622f21f25be7aba58c.png?thumb=1&w=40&h=40&f=webp&q=90" class="thumb"> 
+                                
+                                   <span class="text">${childArr[j].title}</span>  
+                                
+                                   </li>`).appendTo(newul);
+                        }
+                    }
+                },
+                error:function(msg){
+                    console.log(msg)
+                }
+            })
+        }
+        headNav();
+        leftNav();</script></head><body><div id="app"><div><div class="header"><div id="topbarBannerWrapper"><div class="topbar-banner-Wrapper"><a class="link-block" style="background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/271a0ad51f0b0760ed9cb46791fb2b31.jpg?w=5120&h=240);"></a></div></div><div class="site-topbar"><div class="container"><div class="topbar-nav"><a href="./html/list.html">小米商城</a> <span class="sep">|</span> <a>MIUI</a> <span class="sep">|</span> <a>IoT</a> <span class="sep">|</span> <a>云服务</a> <span class="sep">|</span> <a>金融</a> <span class="sep">|</span> <a>有品</a> <span class="sep">|</span> <a>小爱开放平台</a> <span class="sep">|</span> <a>企业团购</a> <span class="sep">|</span> <a>资质证照</a> <span class="sep">|</span> <a>协议规则</a> <span class="sep">|</span> <a class="topbar-download">下载app <span class="appcode"><img src="http://i1.mifile.cn/f/i/17/appdownload/download.png?1" alt="小米商城" width="90" height="90"> 小米商城APP </span></a><span class="sep">|</span> <a>智能生活</a> <span class="sep">|</span> <a>Select Location</a></div><div class="topbar-cart" id="miniCartTrigger"><em>购物车</em></div><div class="topbar-info"><a href="./html/login.html">登录</a> <span class="sep">|</span> <a href="./html/registration.html">注册</a> <span class="sep">|</span> <a>消息通知</a></div></div></div><div class="site-header"><div class="container"><div class="header-logo"><a href="./index.html" title="小米首页" class="logo"></a></div><div class="header-nav"><ul class="nav-list"><li class="nav-category"><a class="link-category"></a><div class="site-category"><ul id="j_categoryList" class="site-category-list"></ul></div></li><!-- <li class="nav-item"><a class="link nav-item-active">小米手机</a></li>
+                                <li class="nav-item"><a class="link">Redmi 红米</a></li>
+                                <li class="nav-item"><a class="link">电视</a></li>
+                                <li class="nav-item"><a class="link">笔记本</a></li>
+                                <li class="nav-item"><a class="link">家电</a></li>
+                                <li class="nav-item"><a class="link">路由器</a></li>
+                                <li class="nav-item"><a class="link">智能硬件</a></li>
+                                <li class="nav-item"><a class="link">服务</a></li>
+                                <li class="nav-item"><a class="link">社区</a></li> --></ul></div><div class="header-search"><form class="search-form"><input type="search" class="search-text"> <button class="search-btn"><span class="iconfont icon-sousuo"></span></button></form></div><div class="doodleWrapper"></div></div></div></div></div><div class="container"><div class="home-hero"><div class="swiper-container home-hero-swipr"><div class="swiper-wrapper"><div class="swiper-slide"><img alt="" class="swiper-lazy swiper-lazy-loaded" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/84cec825f1cd04ea6554fece8ecbc236.jpg?thumb=1&w=1226&h=460&f=webp&q=90"></div><div class="swiper-slide"><img alt="" class="swiper-lazy swiper-lazy-loaded" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/1d59641abe8aeb4fd39469e351cd63c2.jpg?thumb=1&w=1226&h=460&f=webp&q=90"></div><div class="swiper-slide"><img alt="" class="swiper-lazy swiper-lazy-loaded" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cba15ec5507c76e4ab1c36b71243e06f.jpg?thumb=1&w=1226&h=460&f=webp&q=90"></div><div class="swiper-slide"><img alt="" class="swiper-lazy swiper-lazy-loaded" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/88c951d33781f19fe90f6fc20411378b.jpg?thumb=1&w=1226&h=460&f=webp&q=90"></div><div class="swiper-slide"><img alt="" class="swiper-lazy swiper-lazy-loaded" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6f834e0dcded7308aaedb77b5ee7269c.jpg?thumb=1&w=1226&h=460&f=webp&q=90"></div></div><!-- 如果需要分页器 --><div class="swiper-pagination"></div><!-- 如果需要导航按钮 --><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div><div class="home-hero-sub row"><div class="span4"><ul class="home-channel-list clearfix"><li><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82abdba456e8caaea5848a0cddce03db.png?w=48&h=48" alt="小米秒杀">小米秒杀</li><li><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/806f2dfb2d27978e33fe3815d3851fa3.png?w=48&h=48" alt="企业团购">企业团购</li><li><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/eded6fa3b897a058163e2485532c4f10.png?w=48&h=48" alt="F码通道">F码通道</li><li><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/43a3195efa6a3cc7662efed8e7abe8bf.png?w=48&h=48" alt="米粉卡">米粉卡</li><li><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f4846bca6010a0deb9f85464409862af.png?w=48&h=48" alt="以旧换新">以旧换新</li><li><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9a76d7636b08e0988efb4fc384ae497b.png?w=48&h=48" alt="话费充值">话费充值</li></ul></div><div class="span16"><ul><li class="first"><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c0c05274f2fbb55fbccb89622f798907.jpg?w=632&h=340" alt=""></li><li><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b746a4db2e0473cc076a3a4b9bbe0235.jpg?w=632&h=340" alt=""></li><li><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/816a66edef10673b4768128b41804cae.jpg?w=632&h=340" alt=""></li></ul></div></div></div></div></div><script src="./js/swiper-bundle.min.js"></script><script>var mySwiper = new Swiper ('.swiper-container', {
+          loop: true, // 循环模式选项
+          spaceBetween:30,
+          effect:'fade',
+          ceteredSides:true,
+          //自动播放
+          autoplay:{
+              delay:3000,
+              disableOnInteraction:false,
+          },
+          // 如果需要分页器
+          pagination: {
+            el: '.swiper-pagination',
+            clickable:true,
+          },
+          
+          // 如果需要前进后退按钮
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          
+        }) ;
+        $(".swiper-button-prev").mouseenter(function(){
+            $(".swiper-button-prev").css("background-color","rgba(105,101,101,.5)")
+        });
+        $(".swiper-button-next").mouseenter(function(){
+            $(".swiper-button-next").css("background-color","rgba(105,101,101,.5)")
+        });
+        $(".swiper-button-prev").mouseleave(function(){
+            $(".swiper-button-prev").css("background-color","rgba(105,101,101,0)")
+        }); 
+        $(".swiper-button-next").mouseleave(function(){
+            $(".swiper-button-next").css("background-color","rgba(105,101,101,0)")
+        });
+        
+        $(function(){
+            $(".site-category-list").on("mouseenter",".category-item",function(){
+                        $(this).addClass("category-item-active");
+                        $(this).children("div.children").css("display","block");
+                         
+             });
+            $(".site-category-list").on("mouseleave",".category-item",function(){
+                        $(this).removeClass("category-item-active");
+                        $(this).children("div.children").css("display","none");
+            });
+
+         })
+         $(function(){
+            $(".nav-list").on("mouseenter",".nav-item",function(){
+                    $(this).children("a.link").addClass("nav-item-active");
+                    $(this).children("div.item-children").css("display","block")
+             });
+            $(".nav-list").on("mouseleave",".nav-item",function(){
+                $(this).children("a.link").removeClass("nav-item-active");
+                $(this).children("div.item-children").css("display","none");
+            });
+
+         })</script></body></html>

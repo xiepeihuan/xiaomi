@@ -1,0 +1,1 @@
+"use strict";console.log("加载成功"),_require.config({paths:{jquery:"jquery",register:"register"}}),_require(["register"],function(e){e.registerSend()});
